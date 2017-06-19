@@ -1,0 +1,4 @@
+<view class="wrap" hidden="{{isHidePage}}">
+  <button bindtap="onSelectRole" data-type="0">我是采购人员</button>
+  <button bindtap="onSelectRole" data-type="1">我是sku经理</button>
+</view>

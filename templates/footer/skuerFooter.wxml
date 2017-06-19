@@ -1,0 +1,7 @@
+<template name="skuerFooter">
+  <view class="footer-wrap">
+    <view class="footer-item">我的需求</view>
+    <view class="footer-item">抢单</view>
+    <view class="footer-item">个人中心</view>
+  </view>
+</template>

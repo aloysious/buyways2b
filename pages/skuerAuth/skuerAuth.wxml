@@ -1,0 +1,36 @@
+<!--pages/skuerAuth/skuerAuth.wxml-->
+<view class="container">
+  <view class="ba-name-wrap">
+    <text>我的姓名</text>
+    <input type="text" name="name" value="{{name}}" bindinput="onInputName"/>
+  </view>
+  <view class="ba-producttype-wrap" bindtap="onOpenProductType">
+    <text>关注品类</text>
+    <view class="ba-producttype-list">
+      <view class="ba-producttype-item" wx:for="{{selectedProductType}}" wx:key="unique">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="ba-company-wrap">
+    <text>公司名称</text>
+    <input type="text" name="company" value="{{company}}" bindinput="onInputCompany"/>
+  </view>
+  <view class="ba-phone-wrap">
+    <text>手机号码</text>
+    <input type="text" name="phone" value="{{phone}}" bindinput="onInputPhone"/>
+    <button class="get-code" disabled="{{isCodeDisabled}}" bindtap="onSendSms">{{codeText}}</button>
+  </view>
+  <view class="ba-code-wrap">
+    <text>验证码</text>
+    <input type="text" name="code" value="{{code}}" bindinput="onInputCode"/>
+  </view>
+  <view class="ba-save-wrap" bindtap="onSaveAuthorized">保存</view>
+</view>
+
+<view class="filter-mask" bindtap="onCloseFilterPanel" animation="{{filterMaskAnim}}" style="display:{{filterMaskDisplay}};"></view>
+<view class="filter-panel" animation="{{filterPanelAnim}}">
+  <view>选择一级品类</view>
+  <view class="type-item-wrap" wx:for="{{allProductType}}" wx:key="unique">
+    <view wx:if="{{item.isSelected}}" class="type-item type-item-selected" data-id="{{item.id}}" bindtap="onUnselectType">{{item.name}}</view>
+    <view wx:else class="type-item" data-id="{{item.id}}" bindtap="onSelectType">{{item.name}}</view>
+  </view>
+</view>

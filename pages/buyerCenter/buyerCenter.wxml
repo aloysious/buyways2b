@@ -1,0 +1,18 @@
+<!--pages/buyerCenter/buyerCenter.wxml-->
+<view class="container">
+
+  <view class="bc-info-wrap" bindtap="onTapBuyerAuth">
+    <image src="{{avatar}}"></image>
+    <view class="bc-info-name">{{name}}</view>
+    <view class="bc-info-toAuth" wx:if="{{!isAuthorized}}">
+      <button>实名绑定</button><text>，更多精彩！</text>
+    </view>
+    <view class="bc-info-company" wx:else>{{company}}</view>
+  </view>
+  <view class="bc-follow-wrap">我的关注</view>
+  <view class="bc-stat-wrap">数据分析</view>
+  <view class="bc-changerole-wrap" bindtap="onTapChangeRole">切换角色</view>
+
+  <import src="../../templates/footer/buyerFooter.wxml"/>
+  <template is="buyerFooter"></template>
+</view>

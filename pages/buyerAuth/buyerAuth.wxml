@@ -1,0 +1,21 @@
+<!--pages/buyerAuth/buyerAuth.wxml-->
+<view class="container">
+  <view class="ba-name-wrap">
+    <text>我的姓名</text>
+    <input type="text" name="name" value="{{name}}" bindinput="onInputName"/>
+  </view>
+  <view class="ba-company-wrap">
+    <text>公司名称</text>
+    <input type="text" name="company" value="{{company}}" bindinput="onInputCompany"/>
+  </view>
+  <view class="ba-phone-wrap">
+    <text>手机号码</text>
+    <input type="text" name="phone" value="{{phone}}" bindinput="onInputPhone"/>
+    <button class="get-code" disabled="{{isCodeDisabled}}" bindtap="onSendSms">{{codeText}}</button>
+  </view>
+  <view class="ba-code-wrap">
+    <text>验证码</text>
+    <input type="text" name="code" value="{{code}}" bindinput="onInputCode"/>
+  </view>
+  <view class="ba-save-wrap" bindtap="onSaveAuthorized">保存</view>
+</view>

@@ -1,0 +1,28 @@
+/* pages/skuerAuth/skuerAuth.wxss */
+.filter-mask {
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 0;
+  display: none;
+}
+
+.filter-panel {
+  width: 80%;
+  height: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  right: -80%;
+  z-index: 999999;
+  padding: 130rpx 60rpx;
+  box-sizing: border-box;
+}
+
+.type-item-selected {
+  color: red;
+}

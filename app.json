@@ -1,0 +1,20 @@
+{
+  "pages":[
+    "pages/entry/entry",
+    "pages/buyerList/buyerList",
+    "pages/buyerDetail/buyerDetail",
+    "pages/buyerPublish/buyerPublish",
+    "pages/buyerCenter/buyerCenter",
+    "pages/buyerAuth/buyerAuth",
+    "pages/skuerCenter/skuerCenter",
+    "pages/skuerAuth/skuerAuth",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#4285f4",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white"
+  }
+}
