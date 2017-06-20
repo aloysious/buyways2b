@@ -27,7 +27,8 @@ Page({
     publisherName: '',
     publisherContact: '',
     willInputContact: false,
-    isUseTpl: false
+    isUseTpl: false,
+    isShowAuth: true
   },
 
   /**
@@ -259,8 +260,9 @@ Page({
           },
           method: 'POST',
           realSuccess: function (data) {
-            wx.hideLoading();
-            wx.navigateBack();
+            //wx.hideLoading();
+            that.addFirstComment(data.rid);
+            //wx.navigateBack();
           },
           loginCallback: that.onPublish,
           realFail: function (msg, errCode) {
@@ -278,6 +280,28 @@ Page({
         });
       });
 
+  },
+
+  addFirstComment: function(rid) {
+    request({
+      url: APIS.ADD_COMMENT,
+      data: {
+        sid: wx.getStorageSync('sid'),
+        rid: rid,
+        content: '成功发布了需求！',
+        pictures: []
+      },
+      method: 'POST',
+      realSuccess: function (data) {
+        wx.hideLoading();
+        wx.navigateBack();
+      },
+      loginCallback: this.addFirstComment,
+      realFail: function (msg, errCode) {
+        wx.hideLoading();
+        wx.navigateBack();
+      }
+    }, true);
   },
 
   validateSubmit: function() {
@@ -299,5 +323,20 @@ Page({
       return '请输入正确的手机号码'
     }
     return '';
+  },
+
+  onCloseAuth: function() {
+    this.setData({
+      isShowAuth: false
+    });
+  },
+
+  onPreviewPictures: function(e) {
+    var picUrl = e.target.dataset.url;
+
+    wx.previewImage({
+      current: picUrl, // 当前显示图片的链接，不填则默认为 urls 的第一张
+      urls: this.data.pictures
+    });
   }
 })

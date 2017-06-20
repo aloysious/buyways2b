@@ -3,7 +3,6 @@ var { APIS } = require('../const');
 
 function uploadPic(path) {
     var defer = Q.defer();
-    console.log(path);
     wx.uploadFile({
       url: APIS.FILE_UPLOAD,
       filePath: path,
@@ -12,7 +11,6 @@ function uploadPic(path) {
       // formData: {}, // HTTP 请求中其他额外的 form data
       success: function(res){
         // success
-        console.log(res);
         if (res.data) {
           try {
             var d = JSON.parse(res.data);

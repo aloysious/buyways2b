@@ -23,7 +23,7 @@ Page({
     } else {
       if (this.roleType == '0') {
         wx.redirectTo({
-          url: '../buyerPublish/buyerPublish'
+          url: '../buyerCenter/buyerCenter'
         });
       } else {
         wx.redirectTo({

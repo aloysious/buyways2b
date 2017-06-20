@@ -4,7 +4,7 @@
       <image src="{{skuerAvatar}}"></image>
       <view wx:if="{{hasNewComment}}" class="ri-newmsg"></view>
     </view>
-    <view class="ri-info">
+    <view class="ri-info" data-rid="{{rid}}" bindtap="onToDetail">
       <view class="ri-info-title">
         {{title}} <text wx:if="{{amount}}" class="ri-info-sep">|</text> <text wx:if="{{amount}}" class="ri-info-amount">{{amount}}件</text>
       </view>
@@ -16,7 +16,7 @@
       </view>
     </view>
     <view class="ri-more">
-      <view class="ri-more-status">{{statusText}}</view>
+      <view class="ri-more-status" style="color: {{statusColor}};">{{statusText}}</view>
       <view class="ri-more-follow">
         <view wx:if="{{!isFollow}}" class="ri-star" bindtap="onFollow" data-rid="{{rid}}"></view>
         <view wx:else class="ri-star ri-star-selected" bindtap="onUnfollow" data-rid="{{rid}}"></view>

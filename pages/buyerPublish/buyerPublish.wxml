@@ -56,7 +56,8 @@
 
     <view class="description-pic-wrap">
       <view wx:for="{{pictures}}" wx:key="unique" class="pic-item">
-        <image class="description-pic" mode="aspectFill" src="{{item}}" data-index="{{index}}" bindtap="onDeletePic"></image>
+        <image class="description-pic" mode="aspectFill" src="{{item}}" data-url="{{item}}" bindtap="onPreviewPictures"></image>
+        <view class="description-pic-del" data-index="{{index}}" bindtap="onDeletePic"></view>
       </view>
       <view wx:if="{{pictures.length < 5}}" class="pic-item pic-add" bindtap="onAddPic"></view>
     </view>
@@ -71,7 +72,7 @@
       </view>
     </view>
 
-    <view class="bp-pub-anth">
+    <view wx:if="{{isShowAuth}}" class="bp-pub-anth">
       <view class="pub-auth-icon"></view>
       <view class="pub-auth-text">您还未进行实名绑定，绑定后可自动关联联系方式。</view>
       <view class="pub-auth-link">
@@ -79,16 +80,29 @@
           去绑定<text class="pub-auth-arrow"></text>
         </navigator>
       </view>
+      <view class="pub-auth-del" bindtap="onCloseAuth"></view>
     </view>
+
     <view class="contact-wrap">
-      <input type="text" value="{{publisherName}}" placeholder="请输入您的姓名" bindinput="onInputPublisherName"/>
-      <input type="text" value="{{publisherContact}}" placeholder="请输入您的手机号码" bindinput="onInputPublisherContact"/>
+
+      <view class="input-item input-item-ext">
+        <text>您的姓名：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" placeholder="请输入您的真实姓名" bindinput="onInputPublisherName"/>
+      </view>
+
+      <view class="input-item input-item-ext">
+        <text>联系电话：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" placeholder="请输入您的手机号码" bindinput="onInputPublisherContact"/>
+      </view>
+
     </view>
   </view>
 
   <view class="bp-submit-wrap">
-    <button class="cancel-btn" bindtap="onCancel">取消</button>
-    <button class="submit-btn" bindtap="onSubmit">发布</button>
+    <view class="cancel-btn" bindtap="onCancel">取消</view>
+    <view class="submit-btn" bindtap="onSubmit">
+      发布<text></text>
+    </view>
   </view>
 
 </view>

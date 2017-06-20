@@ -3,6 +3,7 @@
     "pages/entry/entry",
     "pages/buyerList/buyerList",
     "pages/buyerDetail/buyerDetail",
+    "pages/commentAdd/commentAdd",
     "pages/buyerPublish/buyerPublish",
     "pages/buyerCenter/buyerCenter",
     "pages/buyerAuth/buyerAuth",

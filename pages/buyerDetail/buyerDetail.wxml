@@ -1,18 +1,19 @@
 <!--pages/buyerDetail/buyerDetail.wxml-->
 <view class="container">
 
-  <view class="bd-alert-wrap">
+  <view wx:if="{{baseInfo.alertType && baseInfo.alertType != -1}}" class="bd-alert-wrap">
     <view class="bd-alert-icon"></view>
-    <view class="bd-alert-tips">还剩三天即将交货</view>
+    <view wx:if="{{baseInfo.alertType == 0}}" class="bd-alert-tips">交货时间临近，请注意沟通</view>
+    <view wx:if="{{baseInfo.alertType == 1}}" class="bd-alert-tips">结款时间临近，请注意沟通</view>
   </view>
-
+  
   <view class="bd-title-wrap">
     <view class="bd-title-left">
-      <view class="bd-title-main">清风抽纸</view>
-      <view class="bd-title-time">发布于2017.06.07</view>
+      <view wx:if="{{extInfo.title}}" class="bd-title-main">{{extInfo.title}}</view>
+      <view class="bd-title-time">发布于{{baseInfo.publishTime}}</view>
     </view>
     <view class="bd-title-right">
-      <view class="bd-title-status">订单确认中</view>
+      <view class="bd-title-status" style="color: {{baseInfo.statusColor}};">{{baseInfo.statusText}}</view>
     </view>
   </view>
 
@@ -21,18 +22,15 @@
       <view class="bd-desc-icon"></view>
       <view class="bd-desc-text">需求描述</view>
     </view>
-    <view class="bd-desc-detail">
+    <view class="bd-desc-detail {{uncoverCls}}">
       <view class="bd-desc-content">
-        接受一个数组，每一项都是字符串，来指定小程序由哪些页面组成。每一项代表对应页面的【路径+文件名】信息，数组的第一项代表小程序的初始页面。小程序中新增/减少页面，都需要对 pages 数组进行修改。
-        文件名不需要写文件后缀，因为框架会自动去寻找路径.json,.js,.wxml,.wxss的四个文件进行整合。
+        {{baseInfo.description.content}}
       </view>
       <view class="bd-desc-pics">
-        <image src="http://img1.windmsn.com/b/2/229/22953/2295322.jpg" mode="aspectFill"></image>
-        <image src="http://img1.windmsn.com/b/2/229/22953/2295322.jpg" mode="aspectFill"></image>
-        <image src="http://img1.windmsn.com/b/2/229/22953/2295322.jpg" mode="aspectFill"></image>     
+        <image wx:for="{{baseInfo.description.pictures}}" wx:key="unique" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="onPreviewDesc"></image>   
       </view>
-      <view class="bd-desc-open">
-        <view class="bd-open-wrap">
+      <view wx:if="{{!uncoverCls}}" class="bd-desc-open">
+        <view class="bd-open-wrap" bindtap="onOpenDesc">
           <view class="bd-open-text">展开全部</view>
           <view class="bd-open-icon"></view>
         </view>
@@ -41,27 +39,27 @@
   </view>
 
   <view class="bd-info-wrap">
-    <view class="bd-info-item">
-      <view class="bd-item-left">SKU经理：张三<text>|</text>清风纸业有限公司</view>
-      <view class="bd-item-right bd-item-phone"></view>
+    <view wx:if="{{extInfo.skuerName}}" class="bd-info-item">
+      <view class="bd-item-left">SKU经理：{{extInfo.skuerName}}<text>|</text>{{extInfo.skuerCompany}}</view>
+      <view class="bd-item-right bd-item-phone" bindTap="onTapContact" data-phone="{{extInfo.skuerContact}}"></view>
     </view>
-    <view class="bd-info-item">
-      产品名称：xxx卫生纸
+    <view wx:if="{{extInfo.productName}}" class="bd-info-item">
+      产品名称：{{extInfo.productName}}
     </view>
-    <view class="bd-info-item">
-      一级品类：xxx卫生纸
+    <view wx:if="{{baseInfo.productType}}"  class="bd-info-item">
+      一级品类：{{baseInfo.productType}}
     </view>
-    <view class="bd-info-item">
-      采购数量：xxx卫生纸
+    <view wx:if="{{extInfo.amount}}" class="bd-info-item">
+      采购数量：{{extInfo.amount}}件
     </view>
-    <view class="bd-info-item">
-      采购金额：xxx卫生纸
+    <view wx:if="{{extInfo.totalPrice}}" class="bd-info-item">
+      采购金额：{{extInfo.totalPrice}}元
     </view>
-    <view class="bd-info-item">
-      交货时间：xxx卫生纸
+    <view wx:if="{{extInfo.deliveryDeadline}}" class="bd-info-item">
+      交货时间：{{extInfo.deliveryDeadline}}
     </view>
-    <view class="bd-info-item bd-info-item-last">
-      结款时间：xxx卫生纸
+    <view wx:if="{{extInfo.paymentDeadline}}" class="bd-info-item bd-info-item-last">
+      结款时间：{{extInfo.paymentDeadline}}
     </view>
   </view>
 
@@ -71,54 +69,23 @@
       <view class="bd-comment-text">需求跟踪</view>
     </view>
     <view class="bd-comment-list">
-      <view class="bd-comment-item">
+
+      <view wx:for="{{commentList}}" wx:key="unique" class="bd-comment-item">
         <view class="bd-comment-node"></view>
         <view class="bd-comment-avatar">
-          <image src="http://bys2b-1253427581.cossh.myqcloud.com/ic_needs_man.png"></image>
+          <image src="{{item.publisherAvatar}}"></image>
         </view>
         <view class="bd-comment-detail">
           <view class="comment-detail-top">
-            <text class="comment-detail-date">2017.06.04</text>
+            <text class="comment-detail-date">{{item.publishTime}}</text>
             <text class="comment-detail-sep"> | </text>
-            <text class="comment-detail-name">张三</text>
+            <text class="comment-detail-name">{{item.publisherName}}</text>
           </view>
           <view class="comment-detail-bottom">
-            <view class="comment-detail-content">因为Powerdesigner只有win系统版本，所以mac下无法安装； 之前看知乎上说Navicat Data Modeler可以，但是我安装了还是无</view>
-            <view class="comment-detail-pics"></view>
-          </view>
-        </view>
-      </view>
-      <view class="bd-comment-item">
-        <view class="bd-comment-node"></view>
-        <view class="bd-comment-avatar">
-          <image src="http://bys2b-1253427581.cossh.myqcloud.com/ic_needs_man.png"></image>
-        </view>
-        <view class="bd-comment-detail">
-          <view class="comment-detail-top">
-            <text class="comment-detail-date">2017.06.04</text>
-            <text class="comment-detail-sep"> | </text>
-            <text class="comment-detail-name">张三</text>
-          </view>
-          <view class="comment-detail-bottom">
-            <view class="comment-detail-content">因为Powerdesigner只有win系统版本，所以mac下无法安装； 之前看知乎上说Navicat Data Modeler可以，但是我安装了还是无</view>
-            <view class="comment-detail-pics"></view>
-          </view>
-        </view>
-      </view>
-      <view class="bd-comment-item">
-        <view class="bd-comment-node"></view>
-        <view class="bd-comment-avatar">
-          <image src="http://bys2b-1253427581.cossh.myqcloud.com/ic_needs_man.png"></image>
-        </view>
-        <view class="bd-comment-detail">
-          <view class="comment-detail-top">
-            <text class="comment-detail-date">2017.06.04</text>
-            <text class="comment-detail-sep"> | </text>
-            <text class="comment-detail-name">张三</text>
-          </view>
-          <view class="comment-detail-bottom">
-            <view class="comment-detail-content">因为Powerdesigner只有win系统版本，所以mac下无法安装； 之前看知乎上说Navicat Data Modeler可以，但是我安装了还是无</view>
-            <view class="comment-detail-pics"></view>
+            <view class="comment-detail-content">{{item.content}}</view>
+            <view class="comment-detail-pics">
+              <image wx:for="{{item.pictures}}" wx:key="unique" wx:for-item="p" wx:for-index="i" src="{{p}}" mode="aspectFill" data-index="{{index}}" data-url="{{p}}" bindtap="onPreviewComment"></image>
+            </view>
           </view>
         </view>
       </view>
@@ -131,10 +98,12 @@
 </view>
 
 <view class="bd-tool-wrap">
-  <view class="bd-tool-input">我要留言</view>
+  <view wx:if="{{baseInfo.relatedRole != -1}}" class="bd-tool-input" bindtap="onToComment">我要留言</view>
+  <view wx:else class="bd-tool-empty"></view>
   <view class="bd-tool-comment">
     <view class="tool-comment-icon"></view>
-    <view class="tool-comment-num">13</view>
+    <view class="tool-comment-num">{{commentCount}}</view>
   </view>
-  <view class="bd-tool-follow"></view>
+  <view wx:if="{{!baseInfo.isFollow}}" class="bd-tool-follow" bindtap="onToggleFollow"></view>
+  <view wx:else class="bd-tool-follow bd-tool-follow-selected" bindtap="onToggleFollow"></view>
 </view>

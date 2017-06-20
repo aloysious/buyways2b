@@ -3,16 +3,46 @@
 
   <view class="bc-info-wrap" bindtap="onTapBuyerAuth">
     <image src="{{avatar}}"></image>
-    <view class="bc-info-name">{{name}}</view>
-    <view class="bc-info-toAuth" wx:if="{{!isAuthorized}}">
-      <button>实名绑定</button><text>，更多精彩！</text>
+    
+    <view wx:if="{{isAuthorized}}" class="bc-info-middle">
+      <view class="bc-info-name">{{name}}</view>
+      <view class="bc-info-phone">{{phone}}</view>
+      <view class="bc-info-company">{{company}}</view>
     </view>
-    <view class="bc-info-company" wx:else>{{company}}</view>
+    <view wx:else class="bc-info-middle">
+      <view class="bc-info-name">{{name}}</view>
+      <view class="bc-info-tips">您还未进行实名绑定</view>
+    </view>
+
+    <view class="bc-info-right">
+      <view wx:if="{{!isAuthorized}}" class="bc-info-authtext">实名绑定</view>
+      <view class="bc-info-arrow"></view>
+    </view>
   </view>
-  <view class="bc-follow-wrap">我的关注</view>
-  <view class="bc-stat-wrap">数据分析</view>
+
+  <view class="bc-func-wrap">
+    <view class="bc-item bc-follow">
+      <view class="bc-item-left bc-follow-label">
+        <view class="bc-item-icon bc-follow-icon"></view>
+        <view class="bc-item-header">我的关注</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+    <view class="bc-item bc-stat">
+      <view class="bc-item-left bc-stat-label">
+        <view class="bc-item-icon bc-stat-icon"></view>
+        <view class="bc-item-header">数据分析</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+  </view>
+
   <view class="bc-changerole-wrap" bindtap="onTapChangeRole">切换角色</view>
 
   <import src="../../templates/footer/buyerFooter.wxml"/>
-  <template is="buyerFooter"></template>
+  <template is="buyerFooter" data="{{...footer}}"></template>
 </view>

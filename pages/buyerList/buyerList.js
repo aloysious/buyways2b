@@ -10,6 +10,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    footer: {
+      listSelectedCls: 'footer-item-selected'
+    },
     filterOpenCls: '',
     isFilterOpen: false,
     filterMoreToggle: 'onOpenFilterMore',
@@ -106,7 +109,8 @@ Page({
           list = list.concat(data.list);
         }
         list = list.map(function(item) {
-          item.statusText = statusListSimple[item.status + ''];
+          item.statusText = statusListSimple[item.status + ''].text;
+          item.statusColor = statusListSimple[item.status + ''].color;
           item.skuerAvatar = item.skuerAvatar || 'http://bys2b-1253427581.cossh.myqcloud.com/ic_needs_shop.png';
           item.title = item.title || item.description;
           return item;
@@ -300,7 +304,7 @@ Page({
 
   toggleFollow: function(e, type) {
     var that = this;
-    var rid = e.target.dataset.rid;
+    var rid = e.currentTarget.dataset.rid;
     request({
       url: APIS.TOGGLE_FOLLOW,
       data: {
@@ -335,5 +339,12 @@ Page({
       return;
     }
     this.getBuyerRequirementList();
+  },
+
+  onToDetail: function(e) {
+    var rid = e.currentTarget.dataset.rid;
+    wx.navigateTo({
+      url: '../buyerDetail/buyerDetail?rid=' + rid,
+    })
   }
 })

@@ -1,6 +1,6 @@
 <template name="buyerFooter">
   <view class="footer-wrap">
-    <view class="footer-item footer-item-selected">
+    <view class="footer-item {{listSelectedCls}}">
       <navigator open-type="redirect" url="/pages/buyerList/buyerList" hover-class="none">
         <view class="nav-icon nav-icon-req"></view>
         <view class="nav-text">我的需求</view>
@@ -12,7 +12,7 @@
         <view class="nav-text-pub">发布需求</view>
       </navigator>
     </view>
-    <view class="footer-item">
+    <view class="footer-item {{centerSelectedCls}}">
       <navigator open-type="redirect" url="/pages/buyerCenter/buyerCenter" hover-class="none">
        <view class="nav-icon nav-icon-per"></view>
         <view class="nav-text">个人中心</view>

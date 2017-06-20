@@ -1,4 +1,10 @@
 /* pages/buyerPublish/buyerPublish.wxss */
+.container {
+  height: auto;
+  padding-bottom: 98rpx;
+  overflow-x: hidden;
+}
+
 .description-pic {
   width: 100rpx;
   height: 100rpx;
@@ -9,6 +15,43 @@
   position: fixed;
   left: 0;
   bottom: 0;
+  width: 100%;
+  height: 98rpx;
+  display: flex;
+  flex-direction: row;
+  border-top: 1rpx solid #ccc;
+  z-index: 999;
+}
+
+.cancel-btn {
+  flex: 1;
+  background-color: #fff;
+  font-size: 32rpx;
+  color: #4a4a4a;
+  text-align: center;
+  height: 100%;
+  line-height: 98rpx;
+}
+
+.submit-btn {
+  flex: 1;
+  background-color: #4285F4;
+  height: 100%;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.submit-btn text {
+  width: 34rpx;
+  height: 34rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_ly_fly_white.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-left: 20rpx;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .bp-item {
@@ -126,6 +169,11 @@
   flex-direction: row;
 }
 
+.input-item-ext {
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 0rpx;
+}
+
 .input-item text {
   width: 140rpx;
   height: 90rpx;
@@ -153,6 +201,7 @@
   width: 120rpx;
   height: 120rpx;
   margin-right: 22rpx;
+  position: relative;
 }
 
 .description-pic {
@@ -160,8 +209,79 @@
   height: 100%;
 }
 
+.description-pic-del {
+  width: 60rpx;
+  height: 60rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_delete.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: -30rpx;
+  right: -30rpx;
+}
+
 .pic-add {
   background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_fbxq_pic.png);
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.bp-pub-anth {
+  margin: 22rpx 30rpx;
+  height: 264rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_xqfb_bd_onepx.png);
+  background-repeat: repeat-y;
+  background-size: 100%;
+  border-radius: 4rpx;
+  position: relative;
+  padding-top: 40rpx;
+  box-sizing: border-box;
+}
+
+.pub-auth-del {
+  width: 35rpx;
+  height: 36rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_fbxq_close.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+}
+
+.pub-auth-icon {
+  width: 143rpx;
+  height: 73rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/pic_fbxq_smbd.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: auto;
+  margin-bottom: 16rpx;
+}
+
+.pub-auth-text {
+  opacity: 0.7;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 36rpx;
+  text-align: center;
+  margin-bottom: 26rpx;
+}
+
+.pub-auth-link {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  line-height: 48rpx;
+  text-align: center;
+}
+
+.pub-auth-link text {
+  width: 13rpx;
+  height: 22rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_xqfb_arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  margin-left: 10rpx;
+  vertical-align: middle;
 }

@@ -12,15 +12,42 @@ var statusList = [
 ];
 
 var statusListSimple = {
-  '-1': '全部',
-  '0': '待响应',
-  '1': '需求确认中',
-  '2': '订单确认中',
-  '3': '订单进行中',
-  '4': '物流配送中',
-  '5': '结款中',
-  '6': '已完结',
-  '7': '已终止'
+  '-1': {
+    text: '全部',
+    color: '#0DD0BE'
+  },
+  '0': {
+    text: '待响应',
+    color: '#0DD0BE'
+  },
+  '1': {
+    text: '需求确认中',
+    color: '#0DD0BE'
+  },
+  '2': {
+    text: '订单确认中',
+    color: '#0DD0BE'
+  },
+  '3': {
+    text: '订单进行中',
+    color: '#0DD0BE'
+  },
+  '4': {
+    text: '物流配送中',
+    color: '#0DD0BE'
+  },
+  '5': {
+    text: '结款中',
+    color: '#0DD0BE'
+  },
+  '6': {
+    text: '已完结',
+    color: '#0DD0BE'
+  },
+  '7': {
+    text: '已终止',
+    color: '#0DD0BE'
+  }
 };
 
 var monthFormatList = [
@@ -122,6 +149,9 @@ var APIS = {
   //公司详情
   GET_COMPANY_DETAILS:reqHost + '/getCompanyDetails',
 
+
+  /** bys2b */
+
   // 选择身份
   CHANGE_IDENTITY: reqHost + '/changeIdentity',
 
@@ -153,7 +183,16 @@ var APIS = {
   FILE_UPLOAD: reqHost + '/fileUpload',
 
   // 关注or取消关注
-  TOGGLE_FOLLOW: reqHost + '/toggleFollow'
+  TOGGLE_FOLLOW: reqHost + '/toggleFollow',
+
+  // 获取需求详情
+  GET_REQUIREMENT_DETAIL: reqHost + '/getRequirementDetail',
+
+  // 发表留言
+  ADD_COMMENT: reqHost + '/addComment',
+
+  // 获取留言列表
+  GET_COMMENT_LIST: reqHost + '/getCommentList'
 	
 };
 
